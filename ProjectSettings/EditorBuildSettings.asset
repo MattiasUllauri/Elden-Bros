@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Addons/Nephilite Studios/Straight Sword Animation Set/_Demo (You
+      Can Delete)/Scenes/Test_Scene_01.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Scene_Main_Menu_01.unity
+    guid: 3eb6b0dc009f3104c9191874931128a0
+  - enabled: 1
+    path: Assets/Scenes/World.unity
+    guid: 08d6f5853cf517d49ac003b8769b8ce4
+  m_configObjects: {}
