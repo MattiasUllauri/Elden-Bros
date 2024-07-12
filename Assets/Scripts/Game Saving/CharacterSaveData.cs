@@ -7,7 +7,7 @@ using UnityEngine;
 public class CharacterSaveData
 {
     //Character name
-    public string characterName;
+    public string characterName = "Character";
 
     //Time played
     public float secondsPlayed;

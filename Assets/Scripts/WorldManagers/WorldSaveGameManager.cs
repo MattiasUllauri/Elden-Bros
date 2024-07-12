@@ -120,9 +120,10 @@ public class WorldSaveGameManager : MonoBehaviour
         //Using IF statements instead of SWITCH statements
 
         saveFileDataWriter = new SaveFileDataWriter();
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_01);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_01);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -134,7 +135,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_02);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_02);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -144,9 +145,9 @@ public class WorldSaveGameManager : MonoBehaviour
             StartCoroutine(LoadWorldScene());
             return;
         }
-
+        /*
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_03);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_03);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -158,7 +159,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_04);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_04);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -170,7 +171,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_05);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_05);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -182,7 +183,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_06);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_06);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -194,7 +195,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_07);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_07);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -206,7 +207,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_08);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_08);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -218,7 +219,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_09);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_09);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -230,7 +231,7 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         //Check to see if we can create a new save file (check if others exsist)
-        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_10);
+        saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_10);
 
         if (!saveFileDataWriter.CheckToSeeIfFlieExsist())
         {
@@ -240,6 +241,7 @@ public class WorldSaveGameManager : MonoBehaviour
             StartCoroutine(LoadWorldScene());
             return;
         }
+        */ //Save slots 3-10
 
         //Send warning when slots run out
         TitleScreenManager.Instance.DisplayNoFreeCharacterSlotsPopUp();
@@ -249,6 +251,12 @@ public class WorldSaveGameManager : MonoBehaviour
     public void LoadGame()
     {
         // load a previous file, with a file name depending on which slot we are using 
+        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(currentCharacterSlotBeingUsed);
+
+        saveFileDataWriter = new SaveFileDataWriter();
+
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+        saveFileDataWriter.saveFileName = saveFileName;
         currentCharacterData = saveFileDataWriter.LoadSaveFile();
 
         StartCoroutine(LoadWorldScene());
