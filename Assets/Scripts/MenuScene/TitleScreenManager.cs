@@ -17,10 +17,15 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] Button loadMenuReturnButton;
     [SerializeField] Button mainMenuLoadGameButton;
     [SerializeField] Button mainMenuNewGameButton;
+    [SerializeField] Button deleteCharacterPopUpConfirmButton;
 
     [Header ("Pop ups")]
     [SerializeField] GameObject noCharacterSlotsPopUp;
     [SerializeField] Button noCharacterSlotOkayButton;
+    [SerializeField] GameObject deleteCharacterSlotPopUp;
+
+    [Header("Character Slot")]
+    public CharacterSlot currentSelectedSlot = CharacterSlot.NO_SLOT;
 
     private void Awake()
     {
@@ -72,12 +77,54 @@ public class TitleScreenManager : MonoBehaviour
     public void DisplayNoFreeCharacterSlotsPopUp()
     {
         noCharacterSlotsPopUp.SetActive(true);
+        titleScreenMainMenu.SetActive(false);
         noCharacterSlotOkayButton.Select();
     }
 
     public void CloseNoFreeCharacterSlotsPopUp()
     {
         noCharacterSlotsPopUp.SetActive(false);
+        titleScreenMainMenu.SetActive(true);
         mainMenuNewGameButton.Select();
+    }
+
+    //Character slots
+
+    public void SelectCharacterSlot(CharacterSlot characterSlot)
+    {
+        currentSelectedSlot = characterSlot;
+    }
+
+    public void SelectNoSlot()
+    {
+        currentSelectedSlot = CharacterSlot.NO_SLOT;
+    }
+
+    public void AtteptToDeleteCharacterSlot()
+    {
+        if (currentSelectedSlot != CharacterSlot.NO_SLOT)
+        {
+            deleteCharacterSlotPopUp.SetActive(true);
+            deleteCharacterPopUpConfirmButton.Select();
+        }
+
+    }
+
+    public void DeleteCharacterSlot()
+    {
+        deleteCharacterSlotPopUp.SetActive(false);
+        WorldSaveGameManager.instance.DeleteGame(currentSelectedSlot);
+
+        // refreshing by turning on and off
+        titleScreenLoadMenu.SetActive(false);
+        titleScreenLoadMenu.SetActive(true);
+
+        loadMenuReturnButton.Select();
+    }
+
+    public void CloseDeleteCharacterPopUp()
+    {
+        deleteCharacterSlotPopUp.SetActive(false);
+        loadMenuReturnButton.Select();
     }
 }

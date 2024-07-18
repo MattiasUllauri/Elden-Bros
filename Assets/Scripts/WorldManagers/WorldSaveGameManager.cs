@@ -145,7 +145,7 @@ public class WorldSaveGameManager : MonoBehaviour
             StartCoroutine(LoadWorldScene());
             return;
         }
-        /*
+        
         //Check to see if we can create a new save file (check if others exsist)
         saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_03);
 
@@ -241,7 +241,7 @@ public class WorldSaveGameManager : MonoBehaviour
             StartCoroutine(LoadWorldScene());
             return;
         }
-        */ //Save slots 3-10
+        //Save slots 3-10
 
         //Send warning when slots run out
         TitleScreenManager.Instance.DisplayNoFreeCharacterSlotsPopUp();
@@ -277,6 +277,17 @@ public class WorldSaveGameManager : MonoBehaviour
 
         // write that info onto a JSON file, saved to this machine
         saveFileDataWriter.CreateNewCharacterSaveFile(currentCharacterData);
+    }
+
+    public void DeleteGame(CharacterSlot characterSlot)
+    {
+        // Choose file based on name
+        saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+
+        saveFileDataWriter = new SaveFileDataWriter();
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+        saveFileDataWriter.saveFileName = saveFileName;
+        saveFileDataWriter.DeleteSaveFile();
     }
 
     //Load all character profiles on device when starting game

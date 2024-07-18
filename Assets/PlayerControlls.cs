@@ -291,6 +291,34 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""ea05ca9a-c902-48dd-93c3-f962168d1c37"",
+            ""actions"": [
+                {
+                    ""name"": ""X_Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""90b72a09-140d-4800-bc9f-0d59285129bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b38bca05-4c50-40e4-9b09-11c76007b983"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X_Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -305,6 +333,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("Player Actions", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_X_Button = m_UI.FindAction("X_Button", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -508,6 +539,52 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_X_Button;
+    public struct UIActions
+    {
+        private @PlayerControlls m_Wrapper;
+        public UIActions(@PlayerControlls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @X_Button => m_Wrapper.m_UI_X_Button;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @X_Button.started += instance.OnX_Button;
+            @X_Button.performed += instance.OnX_Button;
+            @X_Button.canceled += instance.OnX_Button;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @X_Button.started -= instance.OnX_Button;
+            @X_Button.performed -= instance.OnX_Button;
+            @X_Button.canceled -= instance.OnX_Button;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -520,5 +597,9 @@ public partial class @PlayerControlls: IInputActionCollection2, IDisposable
     {
         void OnDodge(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnX_Button(InputAction.CallbackContext context);
     }
 }
