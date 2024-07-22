@@ -13,6 +13,8 @@ public class CharacterManager : NetworkBehaviour
 
     //Flags
     public bool isPerformingAction = false;
+    public bool isJumping = false;
+    public bool isGrounded = false;
     public bool applyRootMotion = false;
     public bool canRotate = true;
     public bool canMove = true;
@@ -28,6 +30,8 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void Update()
     {
+        animator.SetBool("isGrounded", isGrounded);
+
         // IF THIS CHARACTER IS BEING CONTROLLED FROM OUR SIDE, THEN ASSIGN ITS NETWORK POSITION TO THE POSITION OF OUR TRANSFORM
         if (IsOwner)
         {
@@ -52,6 +56,6 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void LateUpdate()
     {
-
+        //david deleted this one
     }
 }

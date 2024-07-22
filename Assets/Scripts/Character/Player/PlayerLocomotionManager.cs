@@ -20,6 +20,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     //Dodge
     private Vector3 rollDirection;
     [SerializeField] float dodgeStaminaCost = 25;
+    [SerializeField] float jumpStaminaCost = 25;
 
     protected override void Awake()
     {
@@ -48,7 +49,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.playerAnimatorManager.UpdateAnimatorMovementParamerters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
 
             //IF LOCKED ON, PASS VER AND HORZ VALUES
-        }
+        }    
     }
 
     public void HandleALLMovement()
@@ -177,5 +178,38 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
         player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
 
+    }
+
+    public void AttemptToPerformJump()
+    {
+       //Will change when in combat
+
+       //no jumping mid action
+        if (player.isPerformingAction)
+            return;
+
+        // if no stamtina then no jump
+        if (player.playerNetworkManager.currentStamina.Value <= 0)
+            return;
+
+        // no double jumps
+        if (player.isJumping)
+            return;
+
+        // no falling jump
+        if (player.isGrounded)
+            return;
+
+        // if we are two handing then play two handed jump animation (To do)
+        player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump01", false);
+
+        player.isJumping = true;
+
+        player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
+    }
+
+    public void ApplyJumpoingVelocity()
+    {
+        // Apply an Upward velocity
     }
 }
