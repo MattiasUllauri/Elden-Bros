@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 7061
+  controlID: 160
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 6971
+  controlID: 48
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 6972
+  controlID: 49
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 17}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 7030
+  controlID: 110
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -259,24 +259,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 490
+    width: 641
     height: 405
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -292,9 +292,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 490
+    x: 641
     y: 0
-    width: 905
+    width: 754
     height: 405
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
@@ -323,8 +323,8 @@ MonoBehaviour:
     y: 0
     width: 525
     height: 1067
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -661,9 +661,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.916784, y: 3.2798843, z: -0.640837}
+    m_Target: {x: -32.830315, y: -14163.809, z: 29.144072}
     speed: 2
-    m_Value: {x: -9.916784, y: 3.2798843, z: -0.640837}
+    m_Value: {x: -32.830315, y: -14163.809, z: 29.144072}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -709,13 +709,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.07244562, y: 0.69144, z: -0.069867045, w: 0.71549374}
+    m_Target: {x: 0.60513633, y: 0.24024615, z: -0.19838007, w: 0.732726}
     speed: 2
-    m_Value: {x: 0.072440185, y: 0.6913881, z: -0.0698618, w: 0.71544003}
+    m_Value: {x: 0.6050909, y: 0.2402281, z: -0.19836517, w: 0.73267096}
   m_Size:
-    m_Target: 0.9433981
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 0.9433981
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -779,7 +779,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6886ffffb4a0ffff28a1ffff3ca9ffff6eb1fffff2beffff8cdbffff50f3ffff66f4ffff2afbfffff4ffffff80650000f46a0000586e0000dcbc000038bf00001ac10000
+      m_ExpandedIDs: 2afbfffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_SerializedViewNames: []
   m_SerializedViewValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1088, y: 620}
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -990,14 +990,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.0125796
+    - e00: 1.4231768
       e01: 0
       e02: 0
-      e03: 139.62413
+      e03: 96.10928
       e10: 0
-      e11: 1.0125796
+      e11: 1.4231768
       e12: 0
-      e13: 122.080765
+      e13: -42.140533
       e20: 0
       e21: 0
       e22: 1
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 735
-    width: 489
+    width: 640
     height: 384
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1067,7 +1067,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/data/Scenes
+    - Assets/Addons
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1075,16 +1075,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/data/Scenes
+  - Assets/Addons
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\aquag\OneDrive\Documents\Elden Bros
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 92690000
-    m_LastClickedID: 27026
-    m_ExpandedIDs: 0000000056690000586900005a6900005c6900005e690000606900006269000066690000686900006a6900006c6900006e690000706900008669000094ba00002ac8000000ca9a3b
+    m_SelectedIDs: 8e690000
+    m_LastClickedID: 27022
+    m_ExpandedIDs: 000000005e69000060690000626900006469000066690000686900006a6900006c6900006e69000070690000726900007469000076690000786900007a6900007c69000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1112,7 +1112,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056690000586900005a6900005c6900005e69000060690000626900006469000066690000686900006a6900006c6900006e6900007069000000ca9a3b
+    m_ExpandedIDs: 000000005e69000060690000626900006469000066690000686900006a6900006c6900006e69000070690000726900007469000076690000786900007a6900007c690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1137,24 +1137,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 7883ffff
-    m_LastClickedInstanceID: -31880
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Straight Sword Animation Set
-      m_OriginalName: Straight Sword Animation Set
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 26974
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 735
-    width: 489
+    width: 640
     height: 384
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1223,9 +1223,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 705
-    width: 1482
-    height: 414
+    y: 735
+    width: 640
+    height: 384
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1256,9 +1256,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 490
+    x: 641
     y: 735
-    width: 903
+    width: 752
     height: 384
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1281,7 +1281,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/data/prefabs
+    - Assets/Addons/Nephilite Studios/Straight Sword Animation Set/Animations/core
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1289,16 +1289,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/data/prefabs
+  - Assets/Addons/Nephilite Studios/Straight Sword Animation Set/Animations/core
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\aquag\OneDrive\Documents\Elden Bros
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8e690000
-    m_LastClickedID: 27022
-    m_ExpandedIDs: 0000000056690000586900005a6900005c6900005e69000060690000626900006469000066690000686900006a6900006c6900006e690000706900008669000000ca9a3b
+    m_SelectedIDs: d6690000
+    m_LastClickedID: 27094
+    m_ExpandedIDs: 000000005e69000060690000626900006469000066690000686900006a6900006c6900006e69000070690000726900007469000076690000786900007a6900007c6900008e6900009c69000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1326,7 +1326,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056690000586900005a6900005c6900005e69000060690000626900006469000066690000686900006a6900006c6900006e6900007069000000ca9a3b
+    m_ExpandedIDs: 000000005e69000060690000626900006469000066690000686900006a6900006c6900006e69000070690000726900007469000076690000786900007a6900007c690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1357,18 +1357,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: a8690000b4690000ae690000ba690000c0690000c6690000cc690000d2690000a2690000048c0000886a0000946a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Straight Sword Animation Set
+      m_OriginalName: Straight Sword Animation Set
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 26982
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -1378,7 +1378,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 300}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 196
@@ -1402,9 +1402,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 490
+    x: 641
     y: 735
-    width: 903
+    width: 752
     height: 384
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1418,7 +1418,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 55852
+  m_LastSelectedObjectID: -27940
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52

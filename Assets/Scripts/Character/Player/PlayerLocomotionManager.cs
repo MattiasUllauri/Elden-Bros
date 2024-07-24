@@ -17,10 +17,17 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] float rotationSpeed = 15;
     [SerializeField] int sprintingStaminaCost = 2;
 
+    //Jump
+    private Vector3 jumpDirection;
+    [SerializeField] public float jumpHeight = 4;        
+    [SerializeField] float jumpStaminaCost = 25;
+    [SerializeField] float jumpForwardSpeed = 5;
+    [SerializeField] float freeFallSpeed = 2;
+
+
     //Dodge
     private Vector3 rollDirection;
     [SerializeField] float dodgeStaminaCost = 25;
-    [SerializeField] float jumpStaminaCost = 25;
 
     protected override void Awake()
     {
@@ -49,15 +56,15 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.playerAnimatorManager.UpdateAnimatorMovementParamerters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
 
             //IF LOCKED ON, PASS VER AND HORZ VALUES
-        }    
+        }
     }
 
     public void HandleALLMovement()
     {
         HandleGroundedMovement();
         HandleRotation();
-        //HandleSprinting();
-        //AERIAL MOVEMENT
+        HandleJumpingMovement();
+        HandleFreeFallMovement();
     }
 
     private void GetMovementVales()
@@ -82,14 +89,14 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         moveDirection.Normalize();
         moveDirection.y = 0;
 
-        
-        if(player.playerNetworkManager.isSprinting.Value)   //Sprinting
+
+        if (player.playerNetworkManager.isSprinting.Value)   //Sprinting
         {
             player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
         }
         else    //Walking & Running
         {
-            if(PlayerInputManager.instance.moveAmount > 0.5f)
+            if (PlayerInputManager.instance.moveAmount > 0.5f)
             {
                 player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
             }
@@ -99,6 +106,28 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             }
         }
 
+    }
+
+    private void HandleJumpingMovement()
+    {
+        if (player.isJumping)
+        {
+            player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+        }
+    }
+
+    private void HandleFreeFallMovement()
+    {
+         if (!player.isGrounded)
+        {
+            Vector3 freeFallDirection;
+
+            freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
+            freeFallDirection = freeFallDirection + PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
+            freeFallDirection.y = 0;
+
+            player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
+        }
     }
 
     private void HandleRotation()
@@ -197,19 +226,44 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             return;
 
         // no falling jump
-        if (player.isGrounded)
+        if (!player.isGrounded)
             return;
 
         // if we are two handing then play two handed jump animation (To do)
-        player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump01", false);
 
-        player.isJumping = true;
+        player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_Start_01", false);
+
+        player. isJumping = true;
 
         player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
+
+        jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
+        jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
+        jumpDirection.y = 0;
+
+        if (jumpDirection != Vector3.zero)
+        {
+            // if sprinting, jump direction is at full distance
+            if(player.playerNetworkManager.isSprinting.Value)
+            {
+                jumpDirection *= 1;
+            }
+            // if running, jump direction is at half distance
+            else if(PlayerInputManager.instance.moveAmount > 0.5)
+            {
+                jumpDirection *= 0.5f;
+            }
+            // if walking, jump direction is at quarter distant
+            else if(PlayerInputManager.instance.moveAmount <= 0.5)
+            {
+                jumpDirection *= 0.25f;
+            }
+        }
     }
 
     public void ApplyJumpoingVelocity()
     {
         // Apply an Upward velocity
+        yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
     }
 }

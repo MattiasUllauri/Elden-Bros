@@ -7,7 +7,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     CharacterManager character;
 
     //Ground check and jumping
-    [SerializeField] float gravityForce = -5.55f;
+    [SerializeField] protected float gravityForce = -5.55f;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float groundCheckSphereRadius = 1;
     [SerializeField] protected Vector3 yVelocity; // the force the pulls character jump and down
@@ -27,6 +27,7 @@ public class CharacterLocomotionManager : MonoBehaviour
 
         if (character.isGrounded)
         {
+
             if (yVelocity.y <0)
             {
                 inAirTimer = 0;
@@ -54,7 +55,10 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void HandleGroundCheck()
     {
+
         character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
+
+
     }
 
     // draws shpere in scene view
