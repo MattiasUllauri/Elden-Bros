@@ -330,6 +330,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a688055ea9b5e141bc38aa5eedebf46, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5005852411962136977}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7a688055ea9b5e141bc38aa5eedebf46, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8463732392358044598}
   m_SourcePrefab: {fileID: 100100000, guid: 7a688055ea9b5e141bc38aa5eedebf46, type: 3}
 --- !u!1 &6317036919188911917 stripped
 GameObject:
@@ -533,8 +536,11 @@ MonoBehaviour:
   sprintingSpeed: 6.5
   rotationSpeed: 15
   sprintingStaminaCost: 2
-  dodgeStaminaCost: 25
-  jumpStaminaCost: 25
+  jumpHeight: 4
+  jumpStaminaCost: 1
+  jumpForwardSpeed: 5
+  freeFallSpeed: 2
+  dodgeStaminaCost: 5
 --- !u!114 &-3458146148032250003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2492bd78a364dab4bad8fb25b23cd905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  staminaRegenAmount: 20
+  staminaRegenAmount: 1
   staminaRegenDelay: 2
 --- !u!114 &2075524950459854690
 MonoBehaviour:
@@ -695,3 +701,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8463732392358044598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6317036919188911917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4475f6124228014688e454849c40e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToTest: {fileID: 11400000, guid: bbe1e5ddc9a68b9479bdb3f5bd7d0f8d, type: 2}
+  processEffect: 0
