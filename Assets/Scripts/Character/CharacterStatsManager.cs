@@ -18,6 +18,21 @@ public class CharacterStatsManager : MonoBehaviour
         character = GetComponent<CharacterManager>();
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
+    public int CalculateHealthBasedOnLevel(int viatality)
+    {
+        float health = 0;
+
+        // Equation to change for balencing
+        health = viatality * 15;
+
+        return Mathf.RoundToInt(health);
+    }
+
     public int CalculateStaminaBasedOnLevel(int endurance)
     {
         float stamina = 0;
