@@ -5,9 +5,14 @@ using Unity.Netcode;
 
 public class CharacterManager : NetworkBehaviour
 {
+
+    [Header("Status")]
+    public NetworkVariable<bool> isDead = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public Animator animator;
-    
+
+    [HideInInspector] public CharacterEffectsManager characterEffectsManager;
 
     public CharacterNetworkManager characterNetworkManager;
 
@@ -22,6 +27,8 @@ public class CharacterManager : NetworkBehaviour
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);   
+
+        characterEffectsManager = GetComponent<CharacterEffectsManager>();
 
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
