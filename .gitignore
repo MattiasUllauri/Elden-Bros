@@ -58,7 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-/Assets/Art/Animations
-/Assets/Nephilite Studios/
-/Assets/Art/Animations.meta
-/Assets/Art/Models/
+Assets/Art/Animations/
+Assets/Nephilite Studios/
+Assets/Addons/
+Assets/Art/Animations.meta
+Assets/Art/Models/
