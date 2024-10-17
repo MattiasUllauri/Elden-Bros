@@ -22,7 +22,7 @@ public class CharacterSaveData
     public int endurance;
 
     [Header("Resources")]
-    public float currentHealth;
+    public int currentHealth;
     public float currentStamina;
 
 }

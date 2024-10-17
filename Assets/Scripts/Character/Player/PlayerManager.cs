@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
+
+    [Header("Debug Menu")]
+    [SerializeField] bool respawnCharacter = false;
+
     [HideInInspector] public PlayerAnimationManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
     protected override void Awake()
     {
@@ -19,6 +24,7 @@ public class PlayerManager : CharacterManager
         playerAnimatorManager = GetComponent<PlayerAnimationManager>();
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
     }
 
     protected override void Update()
@@ -34,6 +40,8 @@ public class PlayerManager : CharacterManager
 
         // regen stamina
         playerStatsManager.RegenerateStamina();
+
+        DebugMenu();
     }
 
     protected override void LateUpdate()
@@ -60,11 +68,36 @@ public class PlayerManager : CharacterManager
             playerNetworkManager.vitality.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
             playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
 
-            // updates ui stat bars when a stat changes (H and S
+            // updates ui stat bars when a stat changes (H and S)
             playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
     
+        }
+
+        playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+    }
+
+    public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+        if (IsOwner) 
+        {
+            PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
+        }
+
+        return base.ProcessDeathEvent(manuallySelectDeathAnimation);
+    }
+
+    public override void ReviveCharacter()
+    {
+        base.ReviveCharacter();
+
+        if(IsOwner)
+        {
+            playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
+            playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
+
+            playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
         }
     }
 
@@ -97,5 +130,14 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
         playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
+    }
+
+    private void DebugMenu() 
+    {
+        if (respawnCharacter)
+        {
+            respawnCharacter = false;
+            ReviveCharacter();
+        }
     }
 }

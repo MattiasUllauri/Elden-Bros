@@ -64,7 +64,12 @@ public class CharacterLocomotionManager : MonoBehaviour
     // draws shpere in scene view
     protected void OnDrawGizmosSelected()
     {
-       Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
+       //Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
+
+        if (character)
+        {
+            Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
+        }
     }
 
 }

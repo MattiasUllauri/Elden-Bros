@@ -12,9 +12,9 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterController characterController;
     [HideInInspector] public Animator animator;
 
+    [HideInInspector] public CharacterNetworkManager characterNetworkManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
-
-    public CharacterNetworkManager characterNetworkManager;
+    [HideInInspector] public CharacterAnimationManager characterAnimationManager;
 
     //Flags
     public bool isPerformingAction = false;
@@ -33,6 +33,7 @@ public class CharacterManager : NetworkBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         characterNetworkManager = GetComponent<CharacterNetworkManager>();  
+        characterAnimationManager = GetComponent<CharacterAnimationManager>();
     }
 
     protected virtual void Update()
@@ -64,5 +65,30 @@ public class CharacterManager : NetworkBehaviour
     protected virtual void LateUpdate()
     {
         //david deleted this one
+    }
+
+    public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+    {
+        if(IsOwner)
+        {
+            characterNetworkManager.currentHealth.Value = 0;
+            isDead.Value = true;
+
+            if (!manuallySelectDeathAnimation)
+            {
+                characterAnimationManager.PlayTargetActionAnimation("Death_01", true);
+            }
+        }
+
+        // Play death sfx
+
+        yield return new WaitForSeconds(5);
+
+        // Disable Character
+    }
+
+    public virtual void ReviveCharacter()
+    {
+
     }
 }

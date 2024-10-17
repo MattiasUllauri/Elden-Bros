@@ -11,10 +11,10 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] bool startGameAsClient;
 
     public PlayerUIHudManager playerUIHudManager;
+    public PlayerUIPopUpManager playerUIPopUpManager;
 
     private void Awake()
     {
-        playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
 
         if (instance == null)
         {
@@ -24,6 +24,9 @@ public class PlayerUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+        playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
     }
 
     private void Start()
