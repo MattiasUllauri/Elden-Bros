@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
+    [Header("Collider")]
+    protected Collider damageCollider;
+
     [Header("Damage")]
     public float physicalDamage = 0;    // Standard/Strike/Slash/Pierce
     public float magicDamage = 0;
@@ -15,11 +18,11 @@ public class DamageCollider : MonoBehaviour
     private Vector3 contactPoint;
 
     [Header("Character Damaged")]
-    protected List<CharacterManager> charactersDamage = new List<CharacterManager>();
+    protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
     private void OnTriggerEnter(Collider other)
     {
-         CharacterManager damageTargert = other.GetComponent<CharacterManager>();
+         CharacterManager damageTargert = other.GetComponentInParent<CharacterManager>();
 
         if (damageTargert != null )
         {
@@ -37,10 +40,10 @@ public class DamageCollider : MonoBehaviour
 
     protected virtual void DamageTarget(CharacterManager damageTarget)
     {
-        if (charactersDamage.Contains(damageTarget))
+        if (charactersDamaged.Contains(damageTarget))
             return;
 
-        charactersDamage.Add(damageTarget);
+        charactersDamaged.Add(damageTarget);
 
         TakeDamage damageEffect = Instantiate(WorldCharacterEffectsManager.Instance.takeDamage);
         damageEffect.physicalDamage = physicalDamage;
@@ -50,5 +53,16 @@ public class DamageCollider : MonoBehaviour
         damageEffect.holyDamage = holyDamage;
 
         damageTarget.characterEffectsManager.ProcessInstantEffects(damageEffect);
+    }
+
+    public virtual void EnableDamageCollider()
+    {
+        damageCollider.enabled = true;
+    }
+
+    public virtual void DisableDamageCollider()
+    {
+        damageCollider.enabled = false;
+        charactersDamaged.Clear(); //reset character thats been hit to hit again
     }
 }

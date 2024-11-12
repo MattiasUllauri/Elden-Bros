@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a551f35f89d944596e6f8a8d0d4005, type: 3}
+  m_Name: Broad Sword
+  m_EditorClassIdentifier: 
+  itemName: Broad Sword
+  itemIcon: {fileID: 0}
+  itemDescription: A Broad Sword
+  itemID: 2
+  weaponModel: {fileID: 8011333860249069528, guid: c4eeadb1818510b4c92afe37c142a3c5, type: 3}
+  strengthREQ: 2
+  dexREQ: 1
+  intREQ: 0
+  faithREQ: 0
+  physicalDamage: 180
+  magicDamage: 0
+  fireDamage: 0
+  holyDamage: 0
+  lightningDamage: 0
+  poiseDamage: 30
+  baseSatimaCost: 15
