@@ -48,6 +48,11 @@ public class PlayerInputManager : MonoBehaviour
         SceneManager.activeSceneChanged += OnScreenChange;
 
         instance.enabled = false;  
+
+        if (playerControls != null)
+        {
+            playerControls.Disable();                                      
+        }
     }
 
     private void Update()
@@ -61,11 +66,21 @@ public class PlayerInputManager : MonoBehaviour
         if(newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
         {
             instance.enabled = true;
+
+            if (playerControls != null)
+            {
+                playerControls.Enable();
+            }
         }
         //OTHERWISE WE MUST BE AT THE MAIN MENU, DISABLE OUOR PLAYER CONTROLLS
         else
         {
             instance.enabled = false;
+
+            if (playerControls != null)
+            {
+                playerControls.Disable();
+            }
         }
     }
 

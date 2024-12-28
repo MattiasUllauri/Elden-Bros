@@ -31,6 +31,8 @@ public class WeaponItem : Item
     //light and heavy attacks and other attacks stamina cost
 
     //Item Base actions
+    [Header("Actions")]
+    public WeaponItemAction oh_rbAction; //One Hand Right Button Action
 
     //Ash of War
 

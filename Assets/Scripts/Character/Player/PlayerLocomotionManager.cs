@@ -110,7 +110,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleJumpingMovement()
     {
-        if (player.isJumping)
+        if (player.characterNetworkManager.isJumping.Value)
         {
             player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
         }
@@ -222,7 +222,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             return;
 
         // no double jumps
-        if (player.isJumping)
+        if (player.characterNetworkManager.isJumping.Value)
             return;
 
         // no falling jump
@@ -233,7 +233,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
         player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_Start_01", false);
 
-        player. isJumping = true;
+        player.characterNetworkManager.isJumping.Value = true;
 
         player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
