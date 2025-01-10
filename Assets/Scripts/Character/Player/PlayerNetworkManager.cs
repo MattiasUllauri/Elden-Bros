@@ -72,4 +72,37 @@ public class PlayerNetworkManager : CharacterNetworkManager
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
         player.playerCombatManager.currentWeaponBeingUsed = newWeapon;
     }
+
+    // Item action
+    [ServerRpc]
+    public void NotifyTheServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID)
+    {
+        if (IsServer)
+        {
+            NotifyTheServerOfWeaponActionClientRpc(clientID, actionID, weaponID);
+        }
+    }
+
+    [ClientRpc]
+    public void NotifyTheServerOfWeaponActionClientRpc(ulong clientID, int actionID, int weaponID)
+    {
+        if (clientID != NetworkManager.Singleton.LocalClientId)
+        {
+            PerformWeaponBasedAction(actionID, weaponID);
+        }
+    }
+
+    private void PerformWeaponBasedAction(int actionID, int weaponID)
+    {
+        WeaponItemAction weaponAction = WorldActionManager.instance.GetWeaponItemActionByID(actionID);
+
+        if (weaponAction != null)
+        {
+            weaponAction.AttemptToPerformAction(player, WorldItemDatabase.Instance.GetWeaponByID(weaponID));
+        }
+        else
+        {
+            Debug.LogError("Action is null, cannot be performed");
+        }
+    }
 }

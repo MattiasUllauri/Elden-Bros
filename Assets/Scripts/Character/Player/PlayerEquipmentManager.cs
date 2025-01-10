@@ -62,7 +62,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (!player.IsOwner)
             return;
 
-        Debug.Log("Help Me");
+        //Debug.Log("Help Me");
 
         player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, true, true, true);
 

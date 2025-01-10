@@ -36,12 +36,36 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
-        
+
         character.isPerformingAction = isPerformingAction;
         character.canRotate = canRotate;
         character.canMove = canMove;
 
         // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANI FOR EVERYBODY ELSE PRESENT
         character.characterNetworkManager.NotifytheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+    }
+
+    public virtual void PlayTargetAttackActionAnimation(
+        string targetAnimation,
+        bool isPerformingAction,
+        bool applyRootMotion = true,
+        bool canRotate = false,
+        bool canMove = false)
+    {
+
+        // keep track of last attack performed for combos
+        //keep track of current attack type (light heavey)
+        //update acimation
+        //decide if our attack can be parried
+        //tell the network we are in an "attack" flag is active (for counter damage)
+        character.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(targetAnimation, 0.2f);
+        character.isPerformingAction = isPerformingAction;
+        character.canRotate = canRotate;
+        character.canMove = canMove;
+
+        // TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANI FOR EVERYBODY ELSE PRESENT
+        character.characterNetworkManager.NotifytheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+
     }
 }
