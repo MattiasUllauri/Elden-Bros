@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class WorldCharacterEffectsManager : MonoBehaviour
 {
-    public static WorldCharacterEffectsManager Instance;
+    public static WorldCharacterEffectsManager instance;
+
+    [Header("VFX")]
+    public GameObject bloodSplatterVFX;
 
     [Header("TakeDamage")]
     public TakeDamage takeDamage;
@@ -13,9 +16,9 @@ public class WorldCharacterEffectsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {
