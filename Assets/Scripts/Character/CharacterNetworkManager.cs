@@ -81,30 +81,4 @@ public class CharacterNetworkManager : NetworkBehaviour
         character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(animationID, 0.2f);
     }
-
-    [ServerRpc]
-    public void NotifytheServerOfAttackActionAnimationServerRpc(ulong clintID, string animationID, bool applyRootMotion)
-    {
-        //IF THIS CHARACTER IS THE HOST, THEN ACTIFVATE THE CLIENT RPC
-        if (IsServer)
-        {
-            PlayAttackActionAnimationForAllClientsClientRpc(clintID, animationID, applyRootMotion);
-        }
-    }
-
-    // A CLINT RPC IS SENT TO ALL CLINET PRESENT TO THE HOST
-    [ClientRpc]
-    public void PlayAttackActionAnimationForAllClientsClientRpc(ulong clintID, string animationID, bool applyRootMotion)
-    {
-        if (clintID != NetworkManager.Singleton.LocalClientId)
-        {
-            PerformAttackActionAnimationFromServer(animationID, applyRootMotion);
-        }
-    }
-
-    private void PerformAttackActionAnimationFromServer(string animationID, bool applyRootMotion)
-    {
-        character.applyRootMotion = applyRootMotion;
-        character.animator.CrossFade(animationID, 0.2f);
-    }
 }

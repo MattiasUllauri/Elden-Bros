@@ -32,7 +32,7 @@ public class WeaponItem : Item
 
     //Item Base actions
     [Header("Actions")]
-    public WeaponItemAction oh_RB_Action; //One Hand Right Button Action
+    public WeaponItemAction oh_rbAction; //One Hand Right Button Action
 
     //Ash of War
 

@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 3743179026202806024}
   - component: {fileID: 2054009057601128993}
   - component: {fileID: 2072482912729726098}
-  - component: {fileID: -1813077581412480020}
   - component: {fileID: 2885555551140095474}
   - component: {fileID: 5662377422247005679}
   - component: {fileID: 2426765483437906091}
@@ -149,8 +148,6 @@ MonoBehaviour:
     m_InternalValue: 0
   isSprinting:
     m_InternalValue: 0
-  isJumping:
-    m_InternalValue: 0
   vitality:
     m_InternalValue: 1
   endurance:
@@ -232,15 +229,9 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
-  currentWeaponBeingUsed:
-    m_InternalValue: 0
   currentRightHandWeaponID:
     m_InternalValue: 0
   currentLeftHandWeaponID:
-    m_InternalValue: 0
-  isUsingRightHand:
-    m_InternalValue: 0
-  isUsingLeftHand:
     m_InternalValue: 0
 --- !u!114 &872967487461606187
 MonoBehaviour:
@@ -262,6 +253,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimationManager: {fileID: 0}
   isPerformingAction: 0
+  isJumping: 0
   isGrounded: 1
   applyRootMotion: 0
   canRotate: 1
@@ -274,7 +266,6 @@ MonoBehaviour:
   playerStatsManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
-  playerCombatManager: {fileID: 0}
 --- !u!114 &3743179026202806024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,10 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c086dc49c9fc1240a7b34858df8629c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRightHandWeapon: {fileID: 11400000, guid: 24ff499a3d0d7a34fac85944c431514a, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 3fdb29ce99e4f824098267df66263cda, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: 3fdb29ce99e4f824098267df66263cda, type: 2}
   weaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 24ff499a3d0d7a34fac85944c431514a, type: 2}
+  - {fileID: 11400000, guid: 3fdb29ce99e4f824098267df66263cda, type: 2}
   - {fileID: 11400000, guid: 3fdb29ce99e4f824098267df66263cda, type: 2}
   - {fileID: 11400000, guid: 3fdb29ce99e4f824098267df66263cda, type: 2}
   rightHandWeaponIndex: 0
@@ -346,19 +337,6 @@ MonoBehaviour:
   jumpForwardSpeed: 5
   freeFallSpeed: 2
   dodgeStaminaCost: 5
---- !u!114 &-1813077581412480020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531643942681172861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c874334e78372e44a2d2eff445eab11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &2885555551140095474
 MonoBehaviour:
   m_ObjectHideFlags: 0
