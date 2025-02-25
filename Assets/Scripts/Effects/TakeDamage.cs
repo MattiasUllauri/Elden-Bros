@@ -37,7 +37,7 @@ public class TakeDamage : InstantCharacterEffect
 
     [Header("Directional Damage")]
     public float angleHitFrom;      //Directional damage animation
-    public Vector3 contanctPoint;   //Blood spater direction
+    public Vector3 contactPoint;   //Blood spater direction
 
     public override void ProcessEffect(CharacterManager character)
     {
@@ -53,7 +53,7 @@ public class TakeDamage : InstantCharacterEffect
         //play damage animation
         //check for build ups
         //play damage sound fx
-        //blood
+        PlayDamageVFX(character); //blood
     }
 
     private void CalculateDamagae(CharacterManager character)
@@ -78,5 +78,12 @@ public class TakeDamage : InstantCharacterEffect
         character.characterNetworkManager.currentHealth.Value -= finalDamageDelt;
 
         // calculate poise damage to play animation
+    }
+    
+    private void PlayDamageVFX(CharacterManager character)
+    {
+        // if we have elemental damage, play elemental particels
+
+        character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
     }
 }

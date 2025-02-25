@@ -12,6 +12,9 @@ public class CharacterEffectsManager : MonoBehaviour
 
     CharacterManager character;
 
+    [Header("VFX")]
+    [SerializeField] GameObject bloodSplateterVFX;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
@@ -20,6 +23,19 @@ public class CharacterEffectsManager : MonoBehaviour
     public virtual void ProcessInstantEffects( InstantCharacterEffect effect)
     {
         effect.ProcessEffect(character);
+    }
+
+    public void PlayBloodSplatterVFX(Vector3 contactPoint)
+    {
+        if (bloodSplateterVFX != null)
+        {
+            GameObject bloodSplatter = Instantiate(bloodSplateterVFX, contactPoint, Quaternion.identity);
+        }
+        else
+        {
+            //put other vfx other then blood splatter
+            GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.bloodSplatterVFX, contactPoint, Quaternion.identity);
+        }
     }
 
 }
