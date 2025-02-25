@@ -29,7 +29,6 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
-        playerCombatManager = GetComponent<PlayerCombatManager>();
     }
 
     protected override void Update()
@@ -152,7 +151,7 @@ public class PlayerManager : CharacterManager
     {
         if (switchRightWeapon == true)
         {
-            //Debug.Log("Im here");
+            Debug.Log("Im here");
             switchRightWeapon = false;
             playerEquipmentManager.SwitchRightWeapon();
         }
